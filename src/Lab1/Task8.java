@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class Task8 {
     public static boolean noChar(char[] array,int index) {
         if (index==array.length){
+<<<<<<< HEAD
                 return true;
+=======
+            return true;
+>>>>>>> ca8776889488c381064535716cf056d6a7402a49
         }
         //if its out of range like before '0' or after '9' itll return false
         if(array[index]<'0'|| array[index]>'9'){
