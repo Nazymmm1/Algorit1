@@ -1,6 +1,7 @@
 package Lab2;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
     private Object[] elements;
@@ -143,17 +144,17 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
 
     @Override
     public int indexOf(Object object) {
-        for(int i=0;i<length-1;i++){
-            if (elements[i]==object){
+        for (int i = 0; i < length; i++) {
+            if (elements[i].equals(object)) {
                 return i;
             }
         }
-        throw new IndexOutOfBoundsException("We dont have such an object?!");
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object object) {
-        for(int i=length-1;i>0;i--){
+        for(int i=length-1;i>=0;i--){
             if (elements[i].equals(object)){
                 return i;
             }
@@ -197,8 +198,22 @@ public class MyArrayList<T extends Comparable<T>> implements MyList<T> {
 
 
     @Override
-    //i didnt get why do i need an iterator at first place
     public Iterator<T> iterator() {
-        return null;
+        return new Iterator<T>() {
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < length;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return (T) elements[currentIndex++];
+            }
+        };
     }
 }
