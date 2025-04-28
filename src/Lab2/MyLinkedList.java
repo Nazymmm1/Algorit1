@@ -168,9 +168,7 @@ public class MyLinkedList<T extends Comparable<T>> implements MyList<T> {
         Object[] array = toArray();
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
-                @SuppressWarnings("unchecked")
                 T current = (T) array[j];
-                @SuppressWarnings("unchecked")
                 T next = (T) array[j + 1];
                 if (current.compareTo(next) > 0) {
                     array[j] = next;
